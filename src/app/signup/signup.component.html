@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]='userSignupForm' (ngSubmit)='onSubmit()'>
+      <h1> Sign Up </h1>
+      
+      <fieldset>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="user_name" formControlName='name'>
+        <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+          <div *ngIf="f.name.errors.required">Name is required.</div>
+          <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
+        </div>
+  
+        <label for="email">Email:</label>
+        <input type="email" id="mail" name="user_email" formControlName='email'>
+        <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+          <div *ngIf="f.email.errors.required">Email is required.</div>
+          <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+        </div>
+  
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="user_password" formControlName='password'>
+        <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
+          <div *ngIf="f.password.errors.required">Password is required.</div>
+          <div *ngIf="f.password.errors.minlength">Please, enter password of 8 character</div>
+        </div>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" formControlName='confirmPassword'>
+        <div *ngIf="f.confirmPassword.touched && f.confirmPassword.invalid" class="alert alert-danger">
+          <div *ngIf="f.confirmPassword.errors.required">Password is required.</div>
+          <div *ngIf="f.confirmPassword.errors.minlength">Please, enter password of 8 character</div>
+          <div *ngIf="f.confirmPassword.errors.confirmedValidator">Password and Confirm Password must be match.</div>
+        </div>          
+      
+
+        <label for="mobile">Mobile No:</label>
+        <input type="number" id="mobile" name="mobileNo" formControlName='mobile'>
+        <div *ngIf="f.mobile.touched && f.mobile.invalid" class="alert alert-danger">
+          <div *ngIf="f.mobile.errors.required">Mobile is required.</div>
+          <div *ngIf="f.mobile.errors.minlength">Enter Valid Mobile No</div>
+        </div>
+        <label for="bio">Bio:</label>
+        <textarea id="bio" name="user_bio" formControlName='bio'></textarea>
+        <div *ngIf="f.bio.touched && f.bio.invalid" class="alert alert-danger">
+          <div *ngIf="f.bio.errors.required">Body is required.</div>
+        </div>
+      </fieldset>
+      <button type="submit" [disabled]="!userSignupForm.valid">Sign Up</button>
+      <div id="login">
+        Already a member:
+        <a routerLink="../login" >Login</a>
+      </div>
+    </form>
+
+
+  </div>
+</div>
+
+<!-- 
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input formControlName="name" id="name" type="text" class="form-control">
+    <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+      <div *ngIf="f.name.errors.required">Name is required.</div>
+      <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input formControlName="email" id="email" type="text" class="form-control">
+    <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+      <div *ngIf="f.email.errors.required">Email is required.</div>
+      <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="body">Body</label>
+    <textarea formControlName="body" id="body" type="text" class="form-control">
+      </textarea>
+    <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
+      <div *ngIf="f.body.errors.required">Body is required.</div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form> -->
