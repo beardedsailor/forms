@@ -10,13 +10,15 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(public user: CredentialsService, private router: Router,private cookieService : CookieService) {}
+  constructor(
+    public user: CredentialsService,
+    private router: Router,
+    private cookieService: CookieService
+  ) {}
 
-  private cookieValue=''
+  private cookieValue = '';
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
   userLoginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -28,8 +30,8 @@ export class LoginComponent implements OnInit {
   onLogin() {
     console.log(this.userLoginForm.value);
     const data = this.user.getData(),
-     email= this.userLoginForm.controls['email'].value,
-     password=this.userLoginForm.controls['password'].value
+      email = this.userLoginForm.controls['email'].value,
+      password = this.userLoginForm.controls['password'].value;
 
     let res = 'Invalid Data';
     for (const user of data) {
@@ -37,7 +39,7 @@ export class LoginComponent implements OnInit {
         res = user.password === password ? user.name : 'Invalid Data';
       }
     }
-   
+
     if (res !== 'Invalid Data') {
       alert(`welcome ${res}`);
       this.goToItems();
@@ -52,8 +54,8 @@ export class LoginComponent implements OnInit {
   }
 
   goToItems() {
-    debugger
-    this.cookieService.set( 'email',this.userLoginForm.controls['email'].value,);
+    debugger;
+    this.cookieService.set('email', this.userLoginForm.controls['email'].value);
     // this.cookieValue = this.cookieService.get(this.userLoginForm.controls['email'].value);
     // alert(this.cookieValue)
     // this.router.navigateByUrl('/homepage');
